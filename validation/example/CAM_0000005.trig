@@ -1,0 +1,25 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix metago: <http://geneontology.org/> .
+@prefix ECO: <http://purl.obolibrary.org/obo/ECO_0000000> .
+@prefix part_of: <http://purl.obolibrary.org/obo/BFO_0000050> .
+@prefix evidence: <http://geneontology.org/lego/evidence> .
+@prefix : <http://geneontology.org/cam_example/0000005/> .
+
+: {
+    : metago:graphType metago:noctuaCam .
+
+    :i part_of: :j .
+
+    :b owl:annotatedSource :i ;
+        owl:annotatedProperty part_of: ;
+        owl:annotatedTarget :j .
+
+    :b evidence: :e .
+    :e a ECO: .
+
+# -------------------------------------------------------------
+
+    :x part_of: :y .
+}

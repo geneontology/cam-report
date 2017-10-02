@@ -1,0 +1,28 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix metago: <http://geneontology.org/> .
+@prefix CC: <http://purl.obolibrary.org/obo/GO_0005575> .
+@prefix MF: <http://purl.obolibrary.org/obo/GO_0003674> .
+@prefix occurs_in: <http://purl.obolibrary.org/obo/BFO_0000066> .
+@prefix cam: <http://geneontology.org/cam_example/0000001/> .
+@prefix inf: <http://geneontology.org/cam_example/0000001_inferred/> .
+
+cam: {
+    cam: metago:graphType metago:noctuaCam .
+
+    cam:mf1 occurs_in: cam:cc1 .
+    cam:cc1 a cam:Foo1 .
+
+    cam:mf2 occurs_in: cam:cc2 .
+    cam:cc2 a cam:Violation .
+}
+
+inf: {
+    inf: metago:inferredFrom cam: .
+
+    cam:mf1 a MF: .
+    cam:mf2 a MF: .
+}
+
+cam:Foo1 rdfs:subClassOf CC: .
+cam:Violation rdfs:subClassOf cam:NotCellComponent .

@@ -1,0 +1,12 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix metago: <http://geneontology.org/> .
+@prefix CC: <http://purl.obolibrary.org/obo/GO_0005575> .
+@prefix enabled_by: <http://purl.obolibrary.org/obo/RO_0002333> .
+@prefix : <http://geneontology.org/cam_example/0000001/> .
+
+: {
+    : metago:graphType metago:noctuaCam .
+
+    :mf enabled_by: :foo ;
+            a CC: .
+}

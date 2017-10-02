@@ -1,0 +1,38 @@
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX MF: <http://purl.obolibrary.org/obo/GO_0003674>
+PREFIX CC: <http://purl.obolibrary.org/obo/GO_0005575>
+PREFIX BP: <http://purl.obolibrary.org/obo/GO_0008150>
+PREFIX enabled_by: <http://purl.obolibrary.org/obo/RO_0002333>
+PREFIX occurs_in: <http://purl.obolibrary.org/obo/BFO_0000066>
+PREFIX AnatEnt: <http://purl.obolibrary.org/obo/UBERON_0001062>
+PREFIX Cell: <http://purl.obolibrary.org/obo/CL_0000000>
+PREFIX MaterialAnatEnt: <http://purl.obolibrary.org/obo/CARO_0000006>
+PREFIX metago: <http://geneontology.org/>
+PREFIX sesame: <http://www.openrdf.org/schema/sesame#>
+
+SELECT ?cam ?cc ?cellClass
+WHERE {
+
+  GRAPH ?cam {
+    ?cam metago:graphType metago:noctuaCam .
+
+    ?mf occurs_in: ?cc .
+    ?cc a ?cellClass .
+  }
+
+  GRAPH ?cam_inferred {
+    ?cam_inferred metago:inferredFrom ?cam .
+
+    ?mf a MF: .
+  }
+
+  FILTER (?cellClass != <http://www.w3.org/2002/07/owl#NamedIndividual>)
+
+  FILTER NOT EXISTS {
+    ?cellClass rdfs:subClassOf* CC: .
+  }
+
+}
